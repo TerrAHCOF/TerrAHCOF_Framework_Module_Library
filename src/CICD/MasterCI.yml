@@ -1,0 +1,93 @@
+name: Framework-Module-Library-CI # - Replace with the short code you use for your project e.g. SNZ.
+
+resources:
+  repositories:
+    - repository: templatesRepo
+      type: git
+      name: Quality%20Engineering/CICD_Components
+      endpoint: QE_Templates_Repo
+      ref: refs/heads/main
+
+trigger:
+  branches:
+    include:
+      - main
+
+variables:
+  repoName: Framework_Module_Library
+  cicdCoreComponentsRepoReference: templatesRepo
+  mainBranchName: main
+  versionFileName: version.json
+  provisionInfrastructure: true
+  productionServiceConnection: "" #The name of the Azure DevOps service connection created by EPM to connect to the Production Azure Subscription. Note: This can be a junk placeholder to start with until you have the service connection created.
+  approvalGroupForVerifyingTerraformPlan: "[$(System.TeamProject)]\\$(System.TeamProject) Team" # The Azure DevOps permission group whose members will be able to approve the Terraform Plans for Production environments e.g. "[SNZ]\\SNZ Team" This has been defaulted to your default project team group.
+  centralModuleLibraryRequired: false # If using modules from the Terraform Central Module Library change to true.
+  knownHostsEntry: "" # Only needed if centralModuleLibraryRequired is true. See this article for more information https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/install-ssh-key?view=azure-devops
+  sshPublicKey: "" # Only needed if centralModuleLibraryRequired is true. See this article for more information https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/install-ssh-key?view=azure-devops
+  sshKeySecureFile: "" # Only needed if centralModuleLibraryRequired is true. See this article for more information https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/install-ssh-key?view=azure-devops# Only needed if centralModuleLibraryRequired is true
+  prBuildRequiresDeployment: true
+  moduleRepoDeployment: true
+
+parameters:
+  - name: deployToProduction
+    displayName: "Deploy to Production?"
+    type: boolean
+    default: false
+
+  # Environment Variables - This parameter object in the MasterCI.yml defines all the environments you will be building/deploying to. Parameter sets for the default standard environments are provided below; edit as required for your solution.
+
+  - name: environments
+    type: object
+    default:
+      - name: dev
+        deploymentDependsOnStage: none
+        serviceConnection: ToshAzureTenant
+        terraformStateResourceGroupName: rg-terraformstate-ae
+        terraformStateStorageAccountName: toshltnpsa
+        terraformStateStorageContainerName: tfstate
+
+  # Solution Variables - This parameter object in the MasterCI.yml defines all the Terraform solutions you will be building/provisioning to, by default an example block has been added. One or more of these blocks is required.
+
+  # TO DO: All solutions that use terraform in Infrastructure-Module-Library-CI
+  - name: solutions
+    type: object
+    default:
+      - name: Validation
+        terraformCloudProvider: azurerm
+        terraformStateKey: validation.terraform.state
+        solutionDirectory: /src/validation
+
+stages:
+  # DO NOT EDIT ANY EXISTING STAGES
+
+  - template: IaC/Terraform/templates/stages/TerraformBuildStageTemplate.yml@templatesRepo
+    parameters:
+      provisionInfrastructure: ${{variables.provisionInfrastructure}}
+      cicdCoreComponentsRepoReference: ${{variables.cicdCoreComponentsRepoReference}}
+      repoName: ${{variables.repoName}}
+      solutions: ${{parameters.solutions}}
+      environments: ${{parameters.environments}}
+      versionFileName: ${{variables.versionFileName}}
+      deployToProduction: ${{parameters.deployToProduction}}
+      centralModuleLibraryRequired: ${{variables.centralModuleLibraryRequired}}
+      knownHostsEntry: ${{variables.knownHostsEntry}}
+      sshPublicKey: ${{variables.sshPublicKey}}
+      sshKeySecureFile: ${{variables.sshKeySecureFile}}
+      mainBranchName: ${{variables.mainBranchName}}
+
+  - template: IaC/Terraform/templates/stages/TerraformDeployStageTemplate.yml@templatesRepo
+    parameters:
+      provisionInfrastructure: ${{variables.provisionInfrastructure}}
+      environments: ${{parameters.environments}}
+      solutions: ${{parameters.solutions}}
+      approvalGroupForVerifyingTerraformPlan: ${{variables.approvalGroupForVerifyingTerraformPlan}}
+      cicdCoreComponentsRepoReference: ${{variables.cicdCoreComponentsRepoReference}}
+      deployToProduction: ${{parameters.deployToProduction}}
+      productionServiceConnection: ${{variables.productionServiceConnection}}
+      centralModuleLibraryRequired: ${{variables.centralModuleLibraryRequired}}
+      knownHostsEntry: ${{variables.knownHostsEntry}}
+      sshPublicKey: ${{variables.sshPublicKey}}
+      sshKeySecureFile: ${{variables.sshKeySecureFile}}
+      repoName: ${{variables.repoName}}
+      moduleRepoDeployment: ${{variables.moduleRepoDeployment}}
+      prBuildRequiresDeployment: ${{variables.prBuildRequiresDeployment}}

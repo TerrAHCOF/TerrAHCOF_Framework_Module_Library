@@ -1,0 +1,58 @@
+{
+  "name": "addTagToRG",
+  "mode": "All",
+  "display_name": "Add tag Environment to resource group",
+  "description": "Adds the mandatory tag key Environment when any resource group missing this tag is created or updated. \nExisting resource groups can be remediated by triggering a remediation task.\nIf the tag exists with a different value it will not be changed.",
+  "management_group_id": "mg_global",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Custom"
+  },
+  "parameters": {
+    "tagName": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Mandatory Tag Environment",
+        "description": "Name of the tag, such as Environment"
+      },
+      "defaultValue": "Environment"
+    },
+    "tagValue": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Tag Value 'TBC'",
+        "description": "Value of the tag, such as 'TBC'"
+      },
+      "defaultValue": "TBC"
+    }
+  },
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+        },
+        {
+          "field": "[concat('tags[', parameters('tagName'), ']')]",
+          "exists": "false"
+        }
+      ]
+    },
+    "then": {
+      "effect": "modify",
+      "details": {
+        "roleDefinitionIds": [
+          "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+        ],
+        "operations": [
+          {
+            "operation": "add",
+            "field": "[concat('tags[', parameters('tagName'), ']')]",
+            "value": "[parameters('tagValue')]"
+          }
+        ]
+      }
+    }
+  }
+}
