@@ -35,8 +35,8 @@ variable "management_groups" {
       display_name = "Platform Common Services"
       ## the parent MG ID need to be the ID of
       parent_management_group_id = "mg_global"
-      subscription_names = []
-      canary_subscription_names = []
+      subscription_names         = []
+      canary_subscription_names  = []
     }
     ## MG ID for Level 2
     mg_bus = {
