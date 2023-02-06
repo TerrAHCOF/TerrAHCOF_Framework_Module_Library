@@ -15,7 +15,7 @@ variable "root_id" {
 
 variable "root_parent_id" {
   type    = string
-  default = "" #TODO
+  default = "6603f62a-2c40-4809-8acb-bd99553cc6ab" #TODO
 }
 
 ## MG structure for all levels under root
@@ -26,7 +26,7 @@ variable "management_groups" {
     mg_global = {
       ## MG Name
       display_name               = "Global"
-      parent_management_group_id = "" #TODO
+      parent_management_group_id = "6603f62a-2c40-4809-8acb-bd99553cc6ab" #TODO
       subscription_names         = []
       canary_subscription_names  = []
     }
@@ -35,8 +35,8 @@ variable "management_groups" {
       display_name = "Platform Common Services"
       ## the parent MG ID need to be the ID of
       parent_management_group_id = "mg_global"
-      subscription_names         = []
-      canary_subscription_names  = []
+      subscription_names = []
+      canary_subscription_names = []
     }
     ## MG ID for Level 2
     mg_bus = {
