@@ -1,6 +1,6 @@
 ############################################################################
 ############################################################################
-# Update the section below to add the module that you want the CICD pipeline
+# Update the section below to add the module that you want the pipeline
 # to run and provision AZ resources
 ############################################################################
 ############################################################################

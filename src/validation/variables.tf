@@ -31,94 +31,73 @@ variable "management_groups" {
       canary_subscription_names  = []
     }
     ## MG ID for Level 2
-    mg_pcs = {
-      display_name = "Platform Common Services"
+    mg_level_2a = {
+      display_name = "Level 2A"
       ## the parent MG ID need to be the ID of
       parent_management_group_id = "mg_global"
-      subscription_names = []
-      canary_subscription_names = []
+      subscription_names         = []
+      canary_subscription_names  = []
     }
     ## MG ID for Level 2
-    mg_bus = {
-      display_name               = "Application Landing Zones"
+    mg_level_2b = {
+      display_name               = "Level 2B"
       parent_management_group_id = "mg_global"
       subscription_names         = []
       canary_subscription_names  = []
     }
     ## MG ID for Level 2
-    mg_sandbox = {
-      display_name               = "Sandbox"
+    mg_level_2c = {
+      display_name               = "Level 2C"
       parent_management_group_id = "mg_global"
       subscription_names         = []
       canary_subscription_names  = []
     }
     ## MG ID for Level 2
-    mg_decomm = {
-      display_name               = "Decom"
+    mg_level_2d = {
+      display_name               = "Level 2D"
       parent_management_group_id = "mg_global"
       subscription_names         = []
       canary_subscription_names  = []
     }
     ## MG ID for Level 3
-    mg_pcs_identity = {
-      display_name               = "Identity"
-      parent_management_group_id = "mg_pcs"
+    mg_level_3a = {
+      display_name               = "Level 3A"
+      parent_management_group_id = "mg_level_2a"
       subscription_names         = []
       canary_subscription_names  = []
     }
     ## MG ID for Level 3
-    mg_pcs_management = {
-      display_name               = "Management"
-      parent_management_group_id = "mg_pcs"
+    mg_level_3b = {
+      display_name               = "Level 3B"
+      parent_management_group_id = "mg_level_2a"
       subscription_names         = []
       canary_subscription_names  = []
     }
     ## MG ID for Level 3
-    mg_pcs_connectivity = {
-      display_name               = "Connectivity"
-      parent_management_group_id = "mg_pcs"
-      subscription_names         = []
-      canary_subscription_names  = []
-    }
-    ## MG ID for Level 3
-    mg_prod_services = {
-      display_name               = "Production Services"
-      parent_management_group_id = "mg_bus"
-      subscription_names         = []
-      canary_subscription_names  = []
-    }
-    ## MG ID for Level 3
-    mg_nonprod_services = {
-      display_name               = "Non-Prod Services"
-      parent_management_group_id = "mg_bus"
+    mg_level_3c = {
+      display_name               = "Level 3C"
+      parent_management_group_id = "mg_level_2a"
       subscription_names         = []
       canary_subscription_names  = []
     }
     ## MG ID for Level 4
-    mg_prod = {
-      display_name               = "Production"
-      parent_management_group_id = "mg_prod_services"
+    mg_level_4a = {
+      display_name               = "Level 4A"
+      parent_management_group_id = "mg_level_3a"
       subscription_names         = []
       canary_subscription_names  = []
     }
     ## MG ID for Level 4
-    mg_preprod = {
-      display_name               = "Pre-Production"
-      parent_management_group_id = "mg_prod_services"
+    mg_level_4b = {
+      display_name               = "Level 4B"
+      parent_management_group_id = "mg_level_3a"
       subscription_names         = []
       canary_subscription_names  = []
     }
     ## MG ID for Level 4
-    mg_standard = {
-      display_name               = "UAT/SIT"
-      parent_management_group_id = "mg_nonprod_services"
-      subscription_names         = []
-      canary_subscription_names  = []
-    }
-    ## MG ID for Level 4
-    mg_dev = {
-      display_name               = "Development"
-      parent_management_group_id = "mg_nonprod_services"
+    mg_level_4c = {
+      display_name               = "Level 4C"
+      parent_management_group_id = "mg_level_3b"
       subscription_names         = []
       canary_subscription_names  = []
     }

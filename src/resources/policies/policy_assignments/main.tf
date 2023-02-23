@@ -1,12 +1,12 @@
 ############################################################################
 ############################################################################
-## This file is created and maintained by DevOps Engineering team 
+## 
 ############################################################################
 ############################################################################
 ## Define local varialbes for the management group and policy
 locals {
-  empty_list   = []
-  empty_map    = tomap({})
+  empty_list = []
+  empty_map  = tomap({})
   provider_path = {
     management_groups      = "/providers/Microsoft.Management/managementGroups/"
     policy_set_definitions = "/providers/Microsoft.Authorization/policySetDefinitions/"
@@ -18,7 +18,7 @@ resource "azurerm_management_group_policy_assignment" "policy_assignment" {
   for_each             = var.policy_assignments
   name                 = tonumber(length(each.key) > 24 ? "The policy assignment name '${each.key}' is invalid. The policy assignment name length must not exceed '24' characters." : length(each.key)) > 24 ? null : each.key
   management_group_id  = "${local.provider_path.management_groups}${each.value.management_group_id}"
-  policy_definition_id = "${each.value.policy_definition_id}"
+  policy_definition_id = each.value.policy_definition_id
   location             = try(each.value.location, null)
   description          = try(each.value.description, "${each.key} Policy Assignment at scope ${each.value.management_group_id}")
   display_name         = try(each.value.displayName, each.key)
