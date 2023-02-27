@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  versioning:
+  terraform-pr:
     permissions:
       contents: read
     uses: TerrAHCOF/workflow_core/.github/workflows/terraformPR.yml@main
