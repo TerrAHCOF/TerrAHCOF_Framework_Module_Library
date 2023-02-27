@@ -1,0 +1,11 @@
+name: "Versioning"
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  terraform-pr:
+    uses: TerrAHCOF/workflow_core/.github/workflows/versioning.yml@main
+    secrets:
+      gh_token: ${{ secrets.GITHUB_TOKEN }}
