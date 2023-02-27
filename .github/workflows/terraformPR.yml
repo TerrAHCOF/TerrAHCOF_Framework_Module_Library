@@ -13,7 +13,7 @@ jobs:
   terraform-pr:
     permissions:
       contents: read
-    uses: TerrAHCOF/workflow_core/.github/workflows/terraformPR.yml
+    uses: TerrAHCOF/workflow_core/.github/workflows/terraformPR.yml@main
     with:
       solutionDirectory: ./src/validation
     secrets:
