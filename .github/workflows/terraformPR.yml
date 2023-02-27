@@ -1,4 +1,4 @@
-name: "Terraform PR"
+name: "Terraform PR Build"
 
 on:
   push:
