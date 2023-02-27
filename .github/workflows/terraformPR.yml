@@ -17,7 +17,7 @@ jobs:
     with:
       solutionDirectory: ./src/validation
     secrets:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
+      gh_token: ${{ secrets.GITHUB_TOKEN }}
       client_id: ${{ secrets.AZURE_AD_CLIENT_ID }}
       client_secret: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
