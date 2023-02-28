@@ -6,7 +6,7 @@
 ############################################################################
 
 ## Create management group structure for Azure tenancy, see variables.tf file
-## for information of the MG variables
+## for information of the Management Group variables
 module "management_group" {
   source            = "../modules/management_group"
   root_id           = var.root_id
