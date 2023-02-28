@@ -2,7 +2,8 @@ name: "Terraform PR Build"
 
 on:
   pull_request:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
   terraform-pr:
