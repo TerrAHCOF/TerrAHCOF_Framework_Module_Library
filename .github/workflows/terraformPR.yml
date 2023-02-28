@@ -7,7 +7,7 @@ on:
 jobs:
   terraform-pr:
     permissions:
-      contents: read
+      contents: write
     uses: TerrAHCOF/workflow_core/.github/workflows/terraformPR.yml@main
     with:
       solutionDirectory: ./src/validation
