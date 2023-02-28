@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  versioning:
+  increase_version:
     permissions:
       contents: write
     uses: TerrAHCOF/workflow_core/.github/workflows/versioning.yml@main
