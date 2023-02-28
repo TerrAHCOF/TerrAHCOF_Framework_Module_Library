@@ -7,7 +7,7 @@
 ############################################################################
 
 #### Varialbes for Management groups module
-## MG root name and ID
+## Management Group root name and ID
 variable "root_id" {
   type    = string
   default = "mg_global"
