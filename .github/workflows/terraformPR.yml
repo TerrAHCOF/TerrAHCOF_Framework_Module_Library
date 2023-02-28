@@ -2,12 +2,8 @@ name: "Terraform PR Build"
 
 on:
   pull_request:
-<<<<<<< HEAD
     branches:
       - main
-=======
-    branches: ["main"]
->>>>>>> cf3fe156b21583bc0fc8b9752102a5a7e96d5494
 
 jobs:
   terraform-pr:
