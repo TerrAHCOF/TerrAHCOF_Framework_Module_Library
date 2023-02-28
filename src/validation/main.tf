@@ -1,12 +1,12 @@
 ############################################################################
 ############################################################################
 # Update the section below to add the module that you want the pipeline
-# to run and provision AZ resources
+# to run and provision Azure resources
 ############################################################################
 ############################################################################
 
-## Create management group structure for AZ tenancy, see variables.tf file
-## for information of the MG varialbes
+## Create management group structure for Azure tenancy, see variables.tf file
+## for information of the MG variables
 module "management_group" {
   source            = "../modules/management_group"
   root_id           = var.root_id
@@ -15,7 +15,7 @@ module "management_group" {
   canary_required   = var.canary_required
 }
 
-## Assign AZ policies to the MG scopes
+## Assign Azure policies to the MG scopes
 module "policy_assignments" {
   source             = "../modules/policies/policy_assignments"
   policy_assignments = var.policy_assignments
