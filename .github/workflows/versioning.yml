@@ -1,4 +1,4 @@
-name: "Versioning"
+name: "GIT Versioning & Release"
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  increase_version:
+  versioning:
     permissions:
       contents: write
     uses: TerrAHCOF/workflow_core/.github/workflows/versioning.yml@main
