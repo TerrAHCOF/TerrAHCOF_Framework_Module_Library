@@ -19,3 +19,4 @@ jobs:
       client_secret: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
       subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       tenant_id: ${{ secrets.AZURE_AD_TENANT_ID }}
+      sonar_key: ${{ secrets.SONAR_KEY }}
