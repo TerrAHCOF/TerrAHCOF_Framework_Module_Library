@@ -1,14 +1,5 @@
 name: "GIT Versioning & Release"
 
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   versioning:
-    permissions:
-      contents: write
     uses: TerrAHCOF/workflow_core/.github/workflows/versioning.yml@main
-    secrets:
-      gh_token: ${{ secrets.GITHUB_TOKEN }}
