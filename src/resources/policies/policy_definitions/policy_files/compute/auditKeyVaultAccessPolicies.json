@@ -1,0 +1,37 @@
+{
+  "name": "auditKeyVaultAccessPolicies",
+  "mode": "Indexed",
+  "display_name": "Audit KeyVault Access Policies",
+  "description": "Audit KeyVault Access Policies as RBAC Access Role should be used",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Compute"
+  },
+  "parameters": {
+    "effect": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Effect",
+        "description": "Enable or disable the execution of the policy"
+      },
+      "defaultValue": "Audit"
+    }
+  },
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.KeyVault/vaults"
+        },
+        {
+          "field": "Microsoft.Keyvault/vaults/accessPolicies[*]",
+          "exists": "true"
+        }
+      ]
+    },
+    "then": {
+      "effect": "[parameters('effect')]"
+    }
+  }
+}

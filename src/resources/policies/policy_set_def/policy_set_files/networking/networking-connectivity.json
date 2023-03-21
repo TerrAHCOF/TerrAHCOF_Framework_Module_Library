@@ -1,0 +1,31 @@
+{
+  "name": "networking-connectivity",
+  "display_name": "Networking - Connectivity",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Networking"
+  },
+  "description": "Contains networking policies",
+  "parameters": {
+    "ddosPlan": {
+      "type": "String",
+      "metadata": {
+        "displayName": "DDoS Protection Plan",
+        "description": "DDoS Protection Plan resource to be associated to the virtual networks",
+        "strongType": "Microsoft.Network/ddosProtectionPlans"
+      },
+      "defaultValue": ""
+    }
+  },
+  "policy_definitions": [
+    {
+      "policyDefinitionReferenceId": "VirtualNetworksShouldBeProtectedByAzureDDoSProtectionStandard",
+      "policy_definition_id": "94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
+      "parameters": {
+        "ddosPlan": {
+          "value": "[parameters('ddosPlan')]"
+        }
+      }
+    }
+  ]
+}

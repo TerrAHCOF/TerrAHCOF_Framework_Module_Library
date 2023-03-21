@@ -1,0 +1,36 @@
+{
+  "name": "auditResourceNoLock",
+  "mode": "All",
+  "display_name": "Audit resource without DoNotDelete lock",
+  "description": "Audit resource without DoNotDelete lock.",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Compute"
+  },
+  "parameters": {
+    "effect": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Effect",
+        "description": "Enable or disable the execution of the policy"
+      },
+      "defaultValue": "AuditIfNotExists"
+    }
+  },
+  "policyRule": {
+    "if": {
+      "field": "type",
+      "like": "*"
+    },
+    "then": {
+      "details": {
+        "existenceCondition": {
+          "field": "Microsoft.Authorization/locks/level",
+          "in": ["CanNotDelete"]
+        },
+        "type": "Microsoft.Authorization/locks"
+      },
+      "effect": "[parameters('effect')]"
+    }
+  }
+}
