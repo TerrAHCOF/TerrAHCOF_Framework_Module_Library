@@ -161,6 +161,7 @@ variable "resource_groups" {
     TestRG = {
       location = "australiaeast",
       tags = {
+        "ServiceName" = "TerrAHCOF"
         "Environment" = "DEV"
       }
       permissions = {}
