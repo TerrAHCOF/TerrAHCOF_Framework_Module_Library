@@ -18,8 +18,13 @@ resource "azurerm_storage_account" "state_file_storage_accounts" {
   resource_group_name      = var.resource_group_name
   location                 = var.location
   account_tier             = "Standard"
+  account_kind             = "StorageV2"
   account_replication_type = "GRS"
   min_tls_version          = "TLS1_2"
+
+  identity {
+    type = "SystemAssigned"
+  }
 
   lifecycle {
     ignore_changes = [tags]
