@@ -5,7 +5,7 @@ locals {
   }
 
   policy_set_definitions = {
-    for value in fileset("${abspath(path.module)}/${var.policy_set_definitions_files_directory_path}", "*.json") :
+    for value in fileset("${abspath(path.module)}/${var.policy_set_definitions_files_directory_path}", "**/*.json") :
     value => jsondecode(file("${abspath(path.module)}/${var.policy_set_definitions_files_directory_path}/${value}"))
   }
 }

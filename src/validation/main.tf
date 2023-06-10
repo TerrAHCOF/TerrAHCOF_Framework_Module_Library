@@ -22,7 +22,8 @@ module "policy_assignments" {
   depends_on = [
     module.management_group,
     module.policy_definitions,
-    module.policy_set_def
+    module.policy_set_def,
+    module.tagging_policy_definitions
   ]
 }
 
@@ -37,7 +38,8 @@ module "policy_set_def" {
   policy_set_definition_scope_id = var.root_id
   depends_on = [
     module.management_group,
-    module.policy_definitions
+    module.policy_definitions,
+    module.tagging_policy_definitions
   ]
 }
 
@@ -52,6 +54,7 @@ module "tagging_policy_definitions" {
   policy_definition_scope_id      = var.root_id
   mandatory_tag_names             = var.mandatory_tag_names
   mandatory_tags_with_value_rules = var.mandatory_tags_with_value_rules
+  depends_on                      = [module.management_group]
 }
 
 module "state_file_management" {

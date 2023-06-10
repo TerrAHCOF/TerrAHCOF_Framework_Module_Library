@@ -184,7 +184,7 @@ variable "mandatory_tags_with_value_rules" {
 
 variable "state_files_resource_group" {
   type    = string
-  default = "rg-terraformstate-ae"
+  default = "rg-terrahcof-state-ae"
 }
 
 variable "state_file_storage_accounts" {
