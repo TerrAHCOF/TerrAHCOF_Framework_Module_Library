@@ -1,12 +1,8 @@
 ############################################################################
 ############################################################################
 ##  Name: Resource Groups Module
-##  Version: 0.0.2
 ##  Description: This module creates resoruce groups, role assignments, storage containers for a service based on mapped input.
-##  Created on 15/7/2022
-##  Author: Tosh Mackevics <tosh.mackevics@mbie.govt.nz>
-##  Team: Quality Engineering
-##  Company: Ministry of Business Innovation and Employment
+##  Author: Tosh Mackevics <toshshaw@hotmail.com>
 ############################################################################
 ############################################################################
 
