@@ -1,0 +1,45 @@
+{
+  "name": "denyStandardTierKeyVault",
+  "mode": "All",
+  "display_name": "Deny Standard Tier KeyVault",
+  "description": "Policy to deny upon creation of standard keyvault resources",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Compute"
+  },
+  "parameters": {
+    "effect": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Effect",
+        "description": "Enable or disable the execution of the policy"
+      },
+      "defaultValue": "Deny"
+    }
+  },
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.KeyVault/vaults"
+        },
+        {
+          "not": {
+            "field": "Microsoft.KeyVault/vaults/createMode",
+            "equals": "recover"
+          }
+        },
+        {
+          "not": {
+            "field": "Microsoft.KeyVault/vaults/sku.name",
+            "equals": "premium"
+          }
+        }
+      ]
+    },
+    "then": {
+      "effect": "[parameters('effect')]"
+    }
+  }
+}

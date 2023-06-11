@@ -1,8 +1,10 @@
 {
-  "name": "compute_governance",
-  "display_name": "Compute Governance",
-  "management_group_id": "mg_global",
-  "metadata": {},
+  "name": "compute",
+  "display_name": "Compute",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Compute"
+  },
   "description": "Contains common Compute Governance policies",
   "parameters": {
     "allowedLocations": {
@@ -32,25 +34,26 @@
         "standard_ds4_v2"
       ]
     },
-    "effect": {
-      "type": "String",
-      "metadata": {
-        "displayName": "Effect",
-        "description": "Enable or disable the execution of the policy"
-      },
-      "allowedValues": ["Modify", "Audit", "Disabled"],
-      "defaultValue": "Modify"
-    },
     "ddosPlan": {
       "type": "String",
       "metadata": {
         "displayName": "DDoS Protection Plan",
         "description": "DDoS Protection Plan resource to be associated to the virtual networks",
         "strongType": "Microsoft.Network/ddosProtectionPlans"
-      }
+      },
+      "defaultValue": ""
     }
   },
   "policy_definitions": [
+    {
+      "policyDefinitionReferenceId": "VirtualNetworksShouldBeProtectedByAzureDDoSProtectionStandard",
+      "policy_definition_id": "94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
+      "parameters": {
+        "ddosPlan": {
+          "value": "[parameters('ddosPlan')]"
+        }
+      }
+    },
     {
       "policyDefinitionReferenceId": "AllowedLocationsForResourceGroups",
       "policy_definition_id": "e765b5de-1225-4ba3-bd56-1ac6695af988",
@@ -70,16 +73,39 @@
       }
     },
     {
-      "policyDefinitionReferenceId": "VirtualNetworksShouldBeProtectedByAzureDDoSProtectionStandard",
-      "policy_definition_id": "94de2ad3-e0c1-4caf-ad78-5d47bbc83d3d",
-      "parameters": {
-        "effect": {
-          "value": "[parameters('effect')]"
-        },
-        "ddosPlan": {
-          "value": "[parameters('ddosPlan')]"
-        }
-      }
+      "policyDefinitionReferenceId": "AuditOldSQLVersion",
+      "policy_type": "Custom",
+      "policy_definition_id": "auditOldSQLVersion"
+    },
+    {
+      "policyDefinitionReferenceId": "AuditSQLBasicCreate",
+      "policy_type": "Custom",
+      "policy_definition_id": "auditSQLBasicCreate"
+    },
+    {
+      "policyDefinitionReferenceId": "DenyClassicResourceCreate",
+      "policy_type": "Custom",
+      "policy_definition_id": "denyClassicResourceCreate"
+    },
+    {
+      "policyDefinitionReferenceId": "AuditResourceNoLock",
+      "policy_type": "Custom",
+      "policy_definition_id": "auditResourceNoLock"
+    },
+    {
+      "policyDefinitionReferenceId": "AllowedLocationsForResources",
+      "policy_type": "Custom",
+      "policy_definition_id": "allowedLocationsForResources"
+    },
+    {
+      "policyDefinitionReferenceId": "DenyStandardTierKeyVault",
+      "policy_type": "Custom",
+      "policy_definition_id": "denyStandardTierKeyVault"
+    },
+    {
+      "policyDefinitionReferenceId": "AuditKeyVaultAccessPolicies",
+      "policy_type": "Custom",
+      "policy_definition_id": "auditKeyVaultAccessPolicies"
     }
   ]
 }

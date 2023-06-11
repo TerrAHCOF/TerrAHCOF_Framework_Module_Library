@@ -1,0 +1,29 @@
+{
+  "name": "auditSQLBasicCreate",
+  "mode": "All",
+  "display_name": "Audit SQL Basic SKU",
+  "description": "Policy to generate an audit event upon creation of a SQL database with 'Basic' edition type.",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Compute"
+  },
+  "parameters": {
+    "effect": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Effect",
+        "description": "Enable or disable the execution of the policy"
+      },
+      "defaultValue": "Audit"
+    }
+  },
+  "policyRule": {
+    "if": {
+      "field": "Microsoft.SQL/servers/databases/edition",
+      "equals": "Basic"
+    },
+    "then": {
+      "effect": "[parameters('effect')]"
+    }
+  }
+}

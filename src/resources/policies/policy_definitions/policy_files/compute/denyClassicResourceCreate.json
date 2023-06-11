@@ -1,0 +1,41 @@
+{
+  "name": "denyClassicResourceCreate",
+  "mode": "All",
+  "display_name": "Deny Classic Resource",
+  "description": "Policy to deny upon creation of classic/v1 (i.e., ASM-based) resources.",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Compute"
+  },
+  "parameters": {
+    "effect": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Effect",
+        "description": "Enable or disable the execution of the policy"
+      },
+      "defaultValue": "Deny"
+    }
+  },
+  "policyRule": {
+    "if": {
+      "anyOf": [
+        {
+          "field": "type",
+          "like": "Microsoft.ClassicCompute/*"
+        },
+        {
+          "field": "type",
+          "like": "microsoft.classicStorage/*"
+        },
+        {
+          "field": "type",
+          "like": "Microsoft.ClassicNetwork/*"
+        }
+      ]
+    },
+    "then": {
+      "effect": "[parameters('effect')]"
+    }
+  }
+}

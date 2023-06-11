@@ -392,3 +392,4 @@ MigrationBackup/
 FodyWeavers.xsd
 .terraform/
 .terraform.lock.hcl
+.vscode/settings.json

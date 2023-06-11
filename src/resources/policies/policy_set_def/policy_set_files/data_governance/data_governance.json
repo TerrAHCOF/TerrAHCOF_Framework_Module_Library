@@ -1,0 +1,15 @@
+{
+  "name": "data_protection_governance",
+  "display_name": "Data Protection Governance",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Data Protection Governance"
+  },
+  "description": "Contains common Data Protection Governance policies",
+  "policy_definitions": [
+    {
+      "policyDefinitionReferenceId": "LongTermGeoRedundantBackupShouldBeEnabledForAzureSQLDatabases",
+      "policy_definition_id": "d38fc420-0735-4ef3-ac11-c806f651a570"
+    }
+  ]
+}

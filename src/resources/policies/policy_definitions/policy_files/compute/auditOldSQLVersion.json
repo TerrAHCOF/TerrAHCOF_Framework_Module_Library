@@ -1,0 +1,48 @@
+{
+  "name": "auditOldSQLVersion",
+  "mode": "All",
+  "display_name": "Audit Old SQL Version",
+  "description": "Policy to generate an audit event upon creation of a sql server with version less than 12.0.",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Compute"
+  },
+  "parameters": {
+    "effect": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Effect",
+        "description": "Enable or disable the execution of the policy"
+      },
+      "defaultValue": "Audit"
+    }
+  },
+  "policyRule": {
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.SQL/servers"
+        },
+        {
+          "field": "Microsoft.SQL/servers/version",
+          "in": [
+            "2.0",
+            "3.0",
+            "4.0",
+            "5.0",
+            "6.0",
+            "7.0",
+            "8.0",
+            "9.0",
+            "10.0",
+            "11.0"
+          ]
+        }
+      ]
+    },
+    "then": {
+      "effect": "[parameters('effect')]"
+    }
+  }
+}

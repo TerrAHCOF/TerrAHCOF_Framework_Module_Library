@@ -1,0 +1,31 @@
+{
+  "name": "tag_governance",
+  "display_name": "Tag Governance",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Tag Governance"
+  },
+  "description": "Contains tag governance policies",
+  "policy_definitions": [
+    {
+      "policyDefinitionReferenceId": "RequireTagsOnRG",
+      "policy_definition_id": "requireTagsOnRG",
+      "policy_type": "Custom"
+    },
+    {
+      "policyDefinitionReferenceId": "InheritTagsFromRG",
+      "policy_definition_id": "inheritTagsFromRG",
+      "policy_type": "Custom"
+    },
+    {
+      "policyDefinitionReferenceId": "InheritTagValuesFromRG",
+      "policy_definition_id": "inheritTagValuesFromRG",
+      "policy_type": "Custom"
+    },
+    {
+      "policyDefinitionReferenceId": "TagsWithValueRules",
+      "policy_definition_id": "TagsWithValueRules",
+      "policy_type": "Custom"
+    }
+  ]
+}

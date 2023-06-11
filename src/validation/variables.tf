@@ -136,6 +136,21 @@ variable "policy_assignments" {
           value = "Audit",
         }
       }
+    },
+
+    tag_governance = {
+      management_group_id  = "mg_global"
+      display_name         = "Tag Governance"
+      description          = "Assignment of the custom tagging policies"
+      policy_definition_id = "/providers/Microsoft.Management/managementGroups/mg_global/providers/Microsoft.Authorization/policySetDefinitions/tag_governance"
+      location             = "australiaeast"
+      identity             = ["SystemAssigned"]
+      enforcement_mode     = true
+      non_compliance_message = {
+        content = "Not Complicant"
+      }
+      not_scopes = "test"
+      parameters = {}
     }
   }
 }
@@ -146,6 +161,7 @@ variable "resource_groups" {
     TestRG = {
       location = "australiaeast",
       tags = {
+        "ServiceName" = "TerrAHCOF"
         "Environment" = "DEV"
       }
       permissions = {}
@@ -153,4 +169,36 @@ variable "resource_groups" {
   }
 }
 
+variable "mandatory_tag_names" {
+  type = list(any)
+  default = [
+    "ServiceName",
+    "Environment"
+  ]
+}
+
+variable "mandatory_tags_with_value_rules" {
+  type    = list(string)
+  default = ["ServiceName"]
+}
+
+variable "state_files_resource_group" {
+  type    = string
+  default = "rg-terrahcof-state-ae"
+}
+
+variable "state_file_storage_accounts" {
+  type = map(any)
+  default = {
+    "BAU" = {
+      business_unit = "BAU"
+      environment   = "dev"
+    }
+  }
+}
+
+variable "storage_account_name" {
+  type    = string
+  default = "stterrahcofstateae"
+}
 

@@ -1,0 +1,28 @@
+{
+  "name": "security_landing_zone",
+  "display_name": "Security - Landing Zone",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Security"
+  },
+  "description": "Contains Security policies for Application Landing Zone",
+  "policy_definitions": [
+    {
+      "policyDefinitionReferenceId": "DenyVnetPeering",
+      "policy_definition_id": "deny_vnet_peering",
+      "policy_type": "Custom"
+    },
+    {
+      "policyDefinitionReferenceId": "WebApplicationFirewallShouldUseTheSpecifiedModeForAzureFrontDoorService",
+      "policy_definition_id": "425bea59-a659-4cbb-8d31-34499bd030b8"
+    },
+    {
+      "policyDefinitionReferenceId": "AllInternetTrafficShouldBeRoutedViaYourDeployedAzureFirewall",
+      "policy_definition_id": "fc5e4038-4584-4632-8c85-c0448d374b2c"
+    },
+    {
+      "policyDefinitionReferenceId": "NetworkInterfacesShouldNotHavePublicIPs",
+      "policy_definition_id": "83a86a26-fd1f-447c-b59d-e51f44264114"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "name": "monitoring",
+  "display_name": "Monitoring",
+  "metadata": {
+    "version": "1.0.0",
+    "category": "Monitoring"
+  },
+  "description": "Contains common Monitoring policies",
+  "parameters": {
+    "logAnalytics": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Log Analytics workspace",
+        "description": "Specify the Log Analytics workspace the agent should be connected to. If this workspace is outside of the scope of the assignment you must manually grant 'Log Analytics Contributor' permissions (or similar) to the policy assignment's principal ID.",
+        "strongType": "omsWorkspace",
+        "assignPermissions": true
+      }
+    }
+  },
+  "policy_definitions": [
+    {
+      "policyDefinitionReferenceId": "DependencyAgentShouldBeEnabledForListedVirtualMachineImages",
+      "policy_definition_id": "11ac78e3-31bc-4f0c-8434-37ab963cea07"
+    },
+    {
+      "policyDefinitionReferenceId": "LogAnalyticsExtensionShouldBeEnabledForListedVirtualMachineImages",
+      "policy_definition_id": "32133ab0-ee4b-4b44-98d6-042180979d50"
+    },
+    {
+      "policyDefinitionReferenceId": "ConfigureLogAnalyticsExtensionOnAzureArcEnabledWindowsServers",
+      "policy_definition_id": "69af7d4a-7b18-4044-93a9-2651498ef203",
+      "parameters": {
+        "logAnalytics": {
+          "value": "[parameters('logAnalytics')]"
+        }
+      }
+    },
+    {
+      "policyDefinitionReferenceId": "DeployConfigureLogAnalyticsExtensionToBeEnabledOnWindowsVirtualMachines",
+      "policy_definition_id": "0868462e-646c-4fe3-9ced-a733534b6a2c",
+      "parameters": {
+        "logAnalytics": {
+          "value": "[parameters('logAnalytics')]"
+        }
+      }
+    },
+    {
+      "policyDefinitionReferenceId": "DeployLogAnalyticsExtensionForLinuxVMs",
+      "policy_definition_id": "053d3325-282c-4e5c-b944-24faffd30d77",
+      "parameters": {
+        "logAnalytics": {
+          "value": "[parameters('logAnalytics')]"
+        }
+      }
+    },
+    {
+      "policyDefinitionReferenceId": "ConfigureDependencyAgentOnAzureArcEnabledWindowsServers",
+      "policy_definition_id": "91cb9edd-cd92-4d2f-b2f2-bdd8d065a3d4"
+    },
+    {
+      "policyDefinitionReferenceId": "DeployConfigureDependencyAgentToBeEnabledOnWindowsVirtualMachines",
+      "policy_definition_id": "1c210e94-a481-4beb-95fa-1571b434fb04"
+    },
+    {
+      "policyDefinitionReferenceId": "ConfigureDependencyAgentOnAzureArcEnabledLinuxServers",
+      "policy_definition_id": "deacecc0-9f84-44d2-bb82-46f32d766d43"
+    },
+    {
+      "policyDefinitionReferenceId": "DeployDependencyAgentForLinuxVirtualMachines",
+      "policy_definition_id": "4da21710-ce6f-4e06-8cdb-5cc4c93ffbee"
+    }
+  ]
+}
