@@ -10,7 +10,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    uses: TerrAHCOF/workflow_core/.github/workflows/terraformPR.yml@another-fix
+    uses: TerrAHCOF/workflow_core/.github/workflows/terraformPR.yml@main
     with:
       solutionDirectory: ./src/validation
     secrets:
